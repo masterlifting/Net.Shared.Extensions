@@ -1,7 +1,8 @@
-﻿using System.Text.Json;
+﻿using Net.Shared.Extensions;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Shared.Extensions.Serialization;
+namespace Net.Shared.Extensions;
 
 public static class JsonExtensions
 {
@@ -13,7 +14,8 @@ public static class JsonExtensions
         Options.Converters.Add(new DateOnlyConverter());
         Options.Converters.Add(new TimeOnlyConverter());
     }
-    public static T Deserialize<T>(this string data) where T : class
+
+    public static T Deserialize<T>(string data) where T : class
     {
         var result = JsonSerializer.Deserialize<T>(data, Options);
         return result ?? throw new NullReferenceException("Json serialization result is NULL");
