@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-
-using Net.Shared.Exceptions;
-
-namespace Net.Shared.Extensions;
+﻿using Net.Shared.Exceptions;
+namespace Microsoft.Extensions.Logging;
 
 public static class LogExtensions
 {
@@ -13,7 +10,6 @@ public static class LogExtensions
     private static readonly Action<ILogger, DateTime, string, Exception?> Information = LoggerMessage.Define<DateTime, string>(LogLevel.Information, LogEvents.Information, Pattern);
     private static readonly Action<ILogger, DateTime, string, Exception?> Debug = LoggerMessage.Define<DateTime, string>(LogLevel.Debug, LogEvents.Debug, Pattern);
     private static readonly Action<ILogger, DateTime, string, Exception?> Trace = LoggerMessage.Define<DateTime, string>(LogLevel.Trace, LogEvents.Trace, Pattern);
-
 
     public static void LogError(this ILogger logger, NetSharedException exception) => Error(logger, DateTime.UtcNow, exception.Message, null);
     public static void LogWarn(this ILogger logger, string message) => Warning(logger, DateTime.UtcNow, message, null);
